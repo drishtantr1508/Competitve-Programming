@@ -3,18 +3,20 @@
 #include <cmath>
 using namespace std;
 
-void solve(int op,string ip){
+int solve(int op,string ip){
     if (ip.size() == 0){
-        cout<<op<<endl;
+        return op;
     }else{
-        op = op+(ip[0]-'0')*pow(10,ip.size()-1);
+        op = op+(ip[0]-'0')*int(pow(10,ip.size()-1));
         ip.erase(ip.begin()+0);
-        solve(op,ip);
+        return solve(op,ip);
     }
 } 
 int main()
 {
     string str;
+    int op = 0;
     cin>>str;
-    solve(0,str);
+    cout<<solve(op,str);
+    cout<<endl;
 }

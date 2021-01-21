@@ -12,12 +12,14 @@ void solve(vector <int> op, vector <int> ip){
     if (ip.size() == 0){
         display(op);
     }else{
-    vector <int> op1 = op;
-    vector <int> op2 = op;
-    op2.push_back(ip[0]);
+    vector <vector<int>> ops {
+        op,
+        op,
+    };
+    ops.at(1).push_back(ip[0]);
     ip.erase(ip.begin()+0);
-    solve(op1,ip);
-    solve(op2,ip);
+    solve(ops.at(0),ip);
+    solve(ops.at(1),ip);
     }
     
 }
