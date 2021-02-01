@@ -3,21 +3,21 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
-
+template<typename T>
+void display(std::vector <T> vec){
+    std::cout  << "[";
+    for (auto elem:vec){
+        std::cout<<elem<<", ";
+    }
+    std::cout<<"]"<<std::endl;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-    // int t;
-    // vector <long long> vec;
-    // cin>>t;
-    // long long int a;
-    // for (int i=0;i<t;i++){
-    //     cin>>a;
-    //     vec.push_back(a);
-    // }
-    // solve(vec);
-    vector <int> vec {3,4,6,1,7,2};
-    auto it = find(vec.begin(),vec.end(),1);
-    cout<<(vec.end()-3)- it<<endl;
+    vector <int> vec (10,0);
+    display(vec);
+    for (int i=0;i<10;i++){
+        cin>>vec[i];
+    }
+    display(vec);
 }
