@@ -14,10 +14,10 @@ void display(std::vector <T> vec){
 int main()
 {
     ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-    vector <int> vec (10,0);
-    display(vec);
-    for (int i=0;i<10;i++){
-        cin>>vec[i];
+    vector <string> vec {"amer","asdf","arem","mrea"};
+    for (int i=0;i<vec.size();i++){
+        sort(vec[i].begin(),vec[i].end());
     }
+    sort(vec.begin(),vec.end());
     display(vec);
 }
