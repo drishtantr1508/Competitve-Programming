@@ -1,42 +1,61 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <sstream>
+#include <math.h>
+#define int long long
+#define pb push_back
+#define pf push_front
+#define vt vector
+#define float double
+#define pi (3.141592653589)
 using namespace std;
 
-vector <string> equate(vector <string> vec){
-    if (vec[0].find(vec[1]) != string::npos){
-        return vec;
+//any-else function here
+bool check_substring(string s1, string s2){
+    size_t found = s1.find(s2);
+    if (found != string::npos){
+        return true;
     }else{
-        string temp1 = vec[1],temp2 = vec[1];
-        temp1.erase(temp1.begin());
-        temp2.pop_back();
-        if (vec[0].find(temp1)==string::npos && vec[0].find(temp2)==string::npos){
-            vec[1].pop_back();
-            equate(vec);
-        }else if(vec[0].find(temp1)!=string::npos && vec[0].find(temp2)==string::npos){
-            vec[1].erase(vec[1].begin());
-            equate(vec);
-        }else if(vec[0].find(temp1)==string::npos && vec[0].find(temp2)!=string::npos){
-            vec[1].pop_back();
-            equate(vec);
+        return false;
+    }
+}
+string longest_common_substr(string s1, string s2){
+    vector<string>substring;
+    string max_substring = "";
+    for (int i=0;i<s2.size();i++){
+        for (int j=0;j<=s2.size()-i;j++){
+            // cout<<i<<" "<<j<<endl;
+            // cout<<s2.substr(i,j)<<" : ";
+            // cout<<check_substring(s1,s2.substr(i,j))<<endl;
+            if (check_substring(s1,s2.substr(i,j))){  
+                if (s2.substr(i,j).size()>=max_substring.size()){
+                    max_substring = s2.substr(i,j);
+                    // cout<<"Okay : "<<max_substring<<endl;
+                }
+            }
         }
     }
+    return max_substring;
 }
-
 void solve(string s1, string s2){
-    if (s1.size()>=s2.size()){
-        vector <string> vec{s1,s2};
-        vector <string> temp_vec = equate(vec);
-        cout<<(s1.size()-temp_vec[0].size())-(s2.size()-temp_vec[1].size())<<endl;
-    }else{
-        vector <string> vec{s2,s1};
-        vector <string> temp_vec = equate(vec);
-        cout<<(s2.size()-temp_vec[0].size())-(s1.size()-temp_vec[1].size())<<endl;
-    }
+    //s1 is greater than or equal to s2
+    string max_substring = longest_common_substr(s1,s2);
+    // cout<<max_substring<<endl;
+    cout<<s1.size()+s2.size()-2*max_substring.size()<<endl;
 }
 
-int main()
+
+signed main()
 {
+    ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+    int t;
     string s1,s2;
-    s1 = "abcd";
-    s2 = "bc";
-    solve(s1,s2);
+    cin>>t;
+    for (int a=0;a<t;a++){
+        cin>>s1;
+        cin>>s2;
+        s1.size() >= s2.size() ? solve(s1,s2) : solve(s2,s1);
+    }
 }
