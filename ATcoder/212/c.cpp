@@ -32,12 +32,20 @@ signed main()
     int minB = B[0];
     int maxA = A[n-1];
     int maxB = B[m-1];
-
+    int min_val = INT64_MAX;
     if (minA >= maxB){
         cout<<minA-maxB<<endl;
     }else if(minB>=maxA){
         cout<<minB-maxA<<endl;
+    }else{
+        int i=0,j=0;
+        while(i<n && j<m){
+            int diff = abs(A[i]-B[j]);
+            min_val = min(diff,min_val);
+            if (A[i] < B[j]) i++;
+            else if (A[i] > B[j]) j++;
+            else break;
+        }
+        cout<<min_val<<endl;
     }
-
-
 }
