@@ -16,22 +16,30 @@ using namespace std;
 
 void solve(int n, int m, int k){
     //code for solve here
-    if(m>=2){
-        int vertical = ((n*m)/2)-k;
-        int left_cell = (n*m)-2*k;
-        if ((left_cell/2)%2 ==0){
-            cout<<"YES"<<endl;
-        }else if(m%2==1){
-            cout<<"YES"<<endl;
+    if (n%2==0){
+        if (m%2==0){
+            if (k%2==0){
+                cout<<"YES"<<endl;
+            }else{
+                cout<<"NO"<<endl;
+            }
+        }else{
+            if (k%2==0 && k <= n*(m/2)){
+                cout<<"YES"<<endl;
+            }else{
+                cout<<"NO"<<endl;
+            }
+        }
+    }else if (n%2!=0 ){
+        int x = m/2;
+        k = k-x;
+        n = n-1;
+        if (k%2==0 && k <= n*(m/2)){
+                cout<<"YES"<<endl;
         }else{
             cout<<"NO"<<endl;
-        }
-    }else{
-        cout<<"NO"<<endl;
+        } 
     }
-
-
-
 }
 
 
