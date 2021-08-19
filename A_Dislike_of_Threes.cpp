@@ -12,22 +12,13 @@
 #define pi (3.141592653589)
 using namespace std;
 
-void solve(int n){
-    //code for solve here
-    vector<int> vec_o(0,n);
-    vector<int> vec_p(0,n);
-    vector<int> vec(-1,n);
-    vector <int> sum_vec;
 
-    rep(i,n) cin>>vec_o[i];
-    rep(i,n) cin>>vec_p[i];
-    int max_sum = 0;
-    sum_vec.push_back(max_sum);
-    
-    rep(i,n){
-        int a = vec_p[n-i-1];
-        
-    }
+void solve(vector <int> vec){
+    //code for solve here
+    int n;
+    cin>>n;
+    cout<<vec[n-1]<<endl;
+
 
 }
 
@@ -36,5 +27,15 @@ signed main()
     ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
     int t;
     cin>>t;
-    solve(t);
+    vector<int>vec;
+    for (int i=1;i<=1666;i++){
+        if (i%10 != 3 && i%3 != 0){
+            vec.push_back(i);
+        }
+    }
+    // cout<<vec.size()<<endl;
+    // cout<<vec[999]<<endl;
+    while(t--){
+        solve(vec);
+    }
 }
